@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Register</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="mystyle.css">
+    </head>
+    <body>
+        <h1>Registration Page </h1>
+        <div>
+            <form action="" method="POST">
+                {{% csrf_token %}}
+                <span>{{registration_form.first_name.label}}</span>
+                <p>{{registration_form.first_name}}</p>
+                <span>{{registration_form.last_name.label}}</span>
+                <p>{{registration_form.last_name}}</p>
+                <span>{{registration_form.email.label}}</span>
+                <p>{{registration_form.email}}</p>
+                <span>{{registration_form.contact_number.label}}</span>
+                <p>{{registration_form.contact_number}}</p>
+
+                {% for error in registration_form.errors %}
+                <p style="color:red;">Error</p>
+                {% endfor %}
+                <button type="submit"> Register </button>        
+            </form>
+
+        </div>
+       
+        <script src="" async defer></script>
+    </body>
+</html>
+
