@@ -13,27 +13,27 @@
         <link rel="stylesheet" href="mystyle.css">
     </head>
     <body>
-        <h1>Login Page </h1>
+        <h1> Login Page </h1>
         <div>
-            <form action="" method="POST">
+            <form action = "" method = "POST">
                 {{% csrf_token %}}
-                <span>{{login_form.email.label}}</span>
-                <p>{{login_form.email}}</p>
-                <span>{{login_form.password.label}}</span>
-                <p>{{login_form.password}}</p>
+                <span> {{login_form.email.label}} </span>
+                <p> {{login_form.email}} </p>
+                <span> {{login_form.password.label}} </span>
+                <p> {{login_form.password}} </p>
                
                 {% if login_form.non_field_errors %}
                    {% for err in login_form.non_field_errors%}
-                     <p style="color:red;">{{login_form.non_field_errors}}</p>
+                     <p style="color:red;"> {{login_form.non_field_errors}} </p>
                    {% endfor %}
                 {% endif %}
 
-                <button type="submit"> Login </button>        
+                <button type = "submit"> Login </button>        
             </form>
 
         </div>
        
-        <script src="" async defer></script>
+        <script src = "" async defer> </script>
     </body>
 </html>
 

@@ -13,28 +13,28 @@
         <link rel="stylesheet" href="mystyle.css">
     </head>
     <body>
-        <h1>Registration Page </h1>
+        <h1> Registration Page </h1>
         <div>
-            <form action="" method="POST">
+            <form action = "" method = "POST">
                 {{% csrf_token %}}
-                <span>{{registration_form.first_name.label}}</span>
-                <p>{{registration_form.first_name}}</p>
-                <span>{{registration_form.last_name.label}}</span>
-                <p>{{registration_form.last_name}}</p>
-                <span>{{registration_form.email.label}}</span>
-                <p>{{registration_form.email}}</p>
-                <span>{{registration_form.contact_number.label}}</span>
-                <p>{{registration_form.contact_number}}</p>
+                <span> {{registration_form.first_name.label}} </span>
+                <p> {{registration_form.first_name}} </p>
+                <span> {{registration_form.last_name.label}} </span>
+                <p> {{registration_form.last_name}} </p>
+                <span> {{registration_form.email.label}} </span>
+                <p> {{registration_form.email}} </p>
+                <span> {{registration_form.contact_number.label}} </span>
+                <p> {{registration_form.contact_number}} </p>
 
                 {% for error in registration_form.errors %}
-                <p style="color:red;">Error</p>
+                <p style = "color:red;"> Error </p>
                 {% endfor %}
-                <button type="submit"> Register </button>        
+                <button type = "submit"> Register </button>        
             </form>
 
         </div>
        
-        <script src="" async defer></script>
+        <script src = "" async defer> </script>
     </body>
 </html>
 
