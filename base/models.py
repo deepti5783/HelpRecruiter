@@ -1,22 +1,25 @@
+from ast import List
 from random import choices
 from secrets import choice
-from django.utils import timezone
+from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.utils.translation import ugettext_lazy as _
-from django.db import models 
 from .managers import CustomUserManager
-class CustomUser(AbstractUser):
-    username = None
-    email = models.EmailField(_('email address', unique=True))
 
+class CustomUser(AbstractUser):
+    username = models.CharField(max_length = 20, unique = True)
+    email = models.EmailField('email address', unique = True)
+    firstname = models.CharField(max_length = 20, null = True)
+    lastname = models.CharField(max_length = 20, null = True)
+    
     USERNAME_FIELD: 'email'
-    REQUIRED_FIELDS: []
+    REQUIRED_FIELDS=[]
 
     objects=CustomUserManager
 
     def __str__(self):
         return self.email
-class Organization( models.Model):
+
+class Organization(models.Model):
     name = models.CharField(max_length = 50)
     slug = models.SlugField(max_length = 40)
     country = models.CharField(max_length = 30)
@@ -68,8 +71,8 @@ class jobApplicant(models.Model):
         ('Rejected', 'Rejected'),
         )
 
-    user = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
-    JobDescription=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser,on_delete = models.CASCADE, related_name = '+')
+    JobDescription=models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name = '+')
     resume = models.FileField()
     notice_period = models.IntegerField()
     status = models.CharField(max_length = 20, choices = STATUS_CHOICES)
