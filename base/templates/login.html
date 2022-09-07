@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -12,28 +9,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="mystyle.css">
     </head>
+    
     <body>
-        <h1> Login Page </h1>
-        <div>
-            <form action = "" method = "POST">
-                {{% csrf_token %}}
-                <span> {{login_form.email.label}} </span>
-                <p> {{login_form.email}} </p>
-                <span> {{login_form.password.label}} </span>
-                <p> {{login_form.password}} </p>
-               
-                {% if login_form.non_field_errors %}
-                   {% for err in login_form.non_field_errors%}
-                     <p style="color:red;"> {{login_form.non_field_errors}} </p>
-                   {% endfor %}
-                {% endif %}
+     
+        {% block content %}      
 
-                <button type = "submit"> Login </button>        
-            </form>
+       <!--{% load crispy_forms_tags %}-->
 
+        <!--Login--> 
+        <div class="container py-5">
+        <h1>Login</h1>
+        <form method="POST">
+           {% load crispy_forms_tags %}
+                {% csrf_token %}
+            
+                {{ login_form|crispy }}
+            <button class="btn btn-primary" type="submit">Login</button>
+        
+        </form>
+        <p class="text-center">Don't have an account? <a href="/register">Create account</a> </p>
         </div>
-       
+
+        {% endblock %}
+
+               
         <script src = "" async defer> </script>
     </body>
 </html>
-

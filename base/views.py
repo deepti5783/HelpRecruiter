@@ -1,64 +1,62 @@
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
-from base.forms import UserRegistrationForm,UserLoginForm
-from email import message
-from django.contrib.auth import authenticate,login,logout
+from base.forms import UserRegistrationForm
+from django.contrib.auth import authenticate,login
 from django.core.exceptions import ValidationError
+from django.contrib import messages
+
 # from django.http import HttpResponse
 # from django.template import loader
 
 # Create your views here.
 def home_view(request):
-   return render(request,"dashboard.html")
+   return render(request,"home.html")
 
 
 def register(request):
    context = {}
    if request.method == 'POST':
       form = UserRegistrationForm(request.POST)
+      
       if form.is_valid():
          form.save()
-         message.success(request, "Your account has been created successfully.")
-         return redirect('login')
+         messages.success(request, "Your account has been created successfully.")     
+         return redirect(login.html)
+      
       context['registration_form'] = form
+      # message.error(request, "Unsuccessfully registration, Invalid Information.")
+   
    elif request.method == 'GET':
       form = UserRegistrationForm()
 
    else:
       return ValidationError("This is not correct method.")
 
-   context = {
-      'registration_form' : form
-      }
-   return render(request,'register.html', context) 
+   return render(request, 'register.html', {'form':form}) 
      
-
    
-
 
 def login_view(request):
    context = {}
    if request.POST:
-      form = UserLoginForm(request.POST)
+      form = AuthenticationForm(request, data = request.POST)
+      
       if form.is_valid():
-         email = request.POST['email']
-         password = request.POST[password]
-         user = authenticate(request, email = email, password = password)
+         email = form.cleaned_data.get('email')
+         password = form.cleaned_data.get('password')
+         user = authenticate(email = email, password = password)
 
          if user is not None:
             login(request, user)
-            return redirect("dashboard")
+            messages.info(request, f"You are now logged in as {email}.")
+            return redirect("home.html")
+         else:
+            messages.error(request,"Invalid email or password.")
       else:
-         context['login_form'] = form
+         messages.error(request,"Invalid email or password.")
 
-   else:
-      form = UserLoginForm()
-      context["login_form"] = form      
-    
-   return render(request,'login.html')
+   form = AuthenticationForm()     
+   return render(request,'login.html', {'form':form})
 
 
-def logout_view(request):
-   message.success("logged out successfully")
-   logout(request)
-   
-   return redirect('login.html')

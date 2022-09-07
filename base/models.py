@@ -1,6 +1,3 @@
-from ast import List
-from random import choices
-from secrets import choice
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import CustomUserManager
@@ -30,6 +27,7 @@ class Organization(models.Model):
 
     def __str__(self):
         return self.name
+
 class jobDescription(models.Model):
     JOB_CAT_CHOICES = (
         ('HR', 'HR'),
@@ -54,8 +52,8 @@ class jobDescription(models.Model):
     mandatory_qualification = models.CharField(max_length = 40)
     optional_qualification = models.CharField(max_length = 40)
     experience = models.IntegerField()
-    what_is_expected = models.CharField(max_length = 10)
-    what_we_offer = (models.CharField(max_length = 10))
+    what_is_expected = models.CharField(max_length = 50)
+    what_we_offer = (models.CharField(max_length = 50))
 
     def _str_(self):
         return self.job_title

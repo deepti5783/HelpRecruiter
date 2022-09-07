@@ -4,19 +4,19 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import UserRegistrationForm, UserLoginForm
 
 class CustomUserAdmin(UserAdmin):
-    add_form = UserRegistrationForm
-    form = UserLoginForm
+    # add_form = UserRegistrationForm
+    form = UserRegistrationForm
     model = CustomUser
-    list_display = ('email', 'is_staff', 'is_active',)
-    list_filter = ('email', 'is_staff', 'is_active',)
+    list_display = ('email', 'is_staff', 'is_active', 'is_superuser')
+    list_filter = ('email', 'is_staff', 'is_active', 'is_superuser')
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        (None, {'fields': ('email', 'password','username')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active','is_superuser')}),
         )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'first_name','last_name', 'password1', 'password2', 'is_staff', 'is_active')
+            'fields': ('email', 'username', 'first_name','last_name', 'password1', 'password2', 'is_staff', 'is_active', 'is_superuser')
             }
         ),
        )

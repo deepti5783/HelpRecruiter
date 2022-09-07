@@ -1,4 +1,4 @@
-from django.db import models
+# from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 
 class CustomUserManager(BaseUserManager):
@@ -13,6 +13,7 @@ class CustomUserManager(BaseUserManager):
         self.set_password(password)
         user.save()
         return user
+    
     
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
