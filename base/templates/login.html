@@ -11,28 +11,14 @@
     </head>
     
     <body>
-     
-        {% block content %}      
-
-       <!--{% load crispy_forms_tags %}-->
-
-        <!--Login--> 
-        <div class="container py-5">
-        <h1>Login</h1>
-        <form method="POST">
-           {% load crispy_forms_tags %}
-                {% csrf_token %}
-            
-                {{ login_form|crispy }}
-            <button class="btn btn-primary" type="submit">Login</button>
         
+        <h2>Log In</h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Log In</button>
         </form>
         <p class="text-center">Don't have an account? <a href="/register">Create account</a> </p>
-        </div>
-
-        {% endblock %}
-
-               
         <script src = "" async defer> </script>
     </body>
 </html>

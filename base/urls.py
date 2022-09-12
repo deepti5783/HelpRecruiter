@@ -1,13 +1,13 @@
-from django.contrib import admin
-from django.urls import path
-from base.views import home_view, register,login_view
+from django.urls import path, include
+from . import views
 # from . import views
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('home/', home_view, name = "home"),
-    path('register/', register, name ="register.html"),
-    path('login/', login_view, name = "login"),
-    # path('logout/', logout_view, name = "logout"),
+    # path('home/', views.home_view, name = "home"),
+    path('index/', views.index, name = 'index'),
+    path('', include('recruiter.urls'))
+    # path('register/', register, name ="register.html"),
+    # path('login/', login_view, name = "login"),
+    # path('logout/', views.logout_view, name = "logout"),
     ]
