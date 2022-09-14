@@ -24,8 +24,10 @@ urlpatterns = [
     path('index/', views.index, name = "index"),
     path('register/', views.register, name ="register"),
     path('login/', views.login_view, name = "login"),
-    path('job_desc/', views.job_desc, name = "job_desc"),
-    path('logout/', views.logout, name = "logout" )
+    path('jobDescription/', views.job_Description, name = "jobDescription"),
+    path('logout/', views.logout, name = "logout" ),
+    path('registration form/', views.app_form, name = "app_form"),
+    
     
 
 ]

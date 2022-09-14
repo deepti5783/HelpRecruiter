@@ -1,21 +1,24 @@
 from django.contrib.auth.models import auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
-from base.forms import UserRegistrationForm
-# from django.contrib.auth import authenticate,login
+from base.forms import UserRegistrationForm,App_form
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 
-# from django.http import HttpResponse
-# from django.template import loader
 
 # Create your views here.
 def home_view(request):
-   return render(request,"home.html")
+   return render(request, "home.html")
+
+   
+
 
 def index(request):
-   return render(request, "index.html")
+   form = UserRegistrationForm()
+   context = {'form':form}
+   return render(request, "index.html", context)
 
+  
 
 def register(request):
    # context = {}
@@ -52,7 +55,7 @@ def login_view(request):
             if user is not None:
                auth.login(request, user)
                messages.info(request, f"You are now logged in as {username}.")
-               return redirect('/job_desc')
+               return redirect('/jobDescription')
             
             else:
                messages.error(request,"Invalid email or password.")
@@ -63,8 +66,20 @@ def login_view(request):
       return render(request,'login.html', {'form':form})
 
 
+
 def logout(request):
    return render(request, "logout.html")
 
-def job_desc(request):
-   return render(request, "jd.html")
+
+def job_Description(request):
+   jobDescription = jobDescription.objects.all()
+   context = { "jds": jobDescription}
+   return render(request, "index.html", context)
+
+
+def app_form(request):
+   context = {}
+   context['form'] = App_form()
+   return render(request, "app_form.html",context)
+
+

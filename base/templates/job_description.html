@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>job_description</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body >
+        {%block title%}
+        <h1>Job Description</h1>
+        {%endblock%}
+    
+        {%block content%}
+        {% for jd in jds %}
+    
+            <div>
+                <label> <b>Job Brief: </b></label><br>
+                {{jd.job_brief}}
+            </div>
+            <br>
+            <div>
+                <label> <b>Responsibilities: </b></label>
+                {{jd.responsibilities | linebreaks}}
+            </div>
+            
+            <div>
+                <label> <b>Requirements and Skills: </b></label>
+                {{jd.skills | linebreaks}}
+            </div>
+            
+            <div>
+                <label > <b> Educational-qualifications: </b></label>
+                <ul>
+                    <li>{{jd.mandatory_qualification}} (Required)</li>
+                    <li>{{jd.optional_qualification}}</li>
+                </ul>
+            </div>
+            
+
+        <a href="{% url 'apply' jd.id %}"><button type="submit" ><h4>Apply for job</h4></button></a>
+        {%endfor%}
+    {%endblock%}
+    
+    </body>
+        <script src="" async defer></script>
+    </body>
+</html>

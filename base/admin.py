@@ -1,7 +1,7 @@
 from base.models import CustomUser,Organization,jobDescription,jobApplicant
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .forms import UserRegistrationForm, UserLoginForm
+from .forms import UserRegistrationForm
 
 class CustomUserAdmin(UserAdmin):
     # add_form = UserRegistrationForm

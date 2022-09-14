@@ -2,12 +2,12 @@
 
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset = "utf-8">
+        <meta http-equiv = "X-UA-Compatible" content = "IE = edge">
         <title>register</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <meta name = "description" content = "">
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+        <link rel = "stylesheet" href = "">
     </head>
     <body>
     
@@ -15,25 +15,26 @@
 
                 
         <!--Register--> 
-        <div class="container py-5">
+        <div class = "container py-5">
             <h1>Register</h1>
             
-            <form method="POST" action="{% url 'register' %}">
+            <form method = "POST" action = "{% url 'register' %}">
                 {% load crispy_forms_tags %} 
                     {% csrf_token %}
                
-                    {{ form|crispy }}                    
-                <button class="btn btn-primary" type="submit">Register</button>
+                    {{ form|crispy }} 
+                                       
+                <button class  ="btn btn-primary" type = "submit">Register</button>
             
             </form>
             
-            <p class="text-center">If you already have an account, <a href="/login" > login </a> instead.</p>
+            <p class = "text-center">If you already have an account, <a href = "/login" > login </a> instead.</p>
         
         </div>
         
         {% endblock %}
         
-        <script src="" async defer></script>
+        <script src = "" async defer></script>
     
     </body>
 </html>

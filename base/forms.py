@@ -29,20 +29,20 @@ class UserLoginForm(UserChangeForm):
         model = CustomUser
         fields = ("email",)
 
-class App_form(forms.ModelForm):
+class App_form(forms.Form):
+    first_name = forms.CharField(max_length = 20)
+    last_name = forms.CharField(max_length = 25)
+    email = forms.EmailField(max_length = 50)
     contact_number = forms.CharField(max_length = 12)
     resume = forms.FileField()
     notice_period = forms.IntegerField()
-    class Meta:
-        model = CustomUser
-        fields = ('firstname', 'lastname', 'email')
+      
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
 
-        def clean_email(self):
-            email = self.cleaned_data.get("email")
-
-            try:
-                CustomUser.objects.get(email = email)
-            except CustomUser.DoesNotExist:
-                return email
-            
-            raise forms.ValidationError('This email address is already in use.')
+        try:
+            CustomUser.objects.get(email = email)
+        except CustomUser.DoesNotExist:
+            return email
+        
+        raise forms.ValidationError('This email address is already in use.')
