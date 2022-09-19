@@ -4,7 +4,6 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import UserRegistrationForm
 
 class CustomUserAdmin(UserAdmin):
-    # add_form = UserRegistrationForm
     form = UserRegistrationForm
     model = CustomUser
     list_display = ('email', 'is_staff', 'is_active', 'is_superuser')

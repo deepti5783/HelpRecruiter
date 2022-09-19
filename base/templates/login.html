@@ -2,23 +2,24 @@
 
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Login</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="mystyle.css">
+        <meta charset = "utf-8">
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+        <title> Login </title>
+        <meta name = "description" content = "">
+        <meta name = "viewport" content = "width = device-width, initial-scale=1">
+        <link rel = "stylesheet" href="">
     </head>
     
     <body>
         
-        <h2 style="color:blue">Log In</h2>
-        <form method="post">
+        <h2 style = "color:blue"> Log In </h2>
+        <form method = "post">
           {% csrf_token %}
-          {{ form.as_p }}
-        <button type="submit" style="color:blue">Log In</a></button>
+          <b>{{ form.as_p }}</b>
+        <button type = "submit" style = "color:blue"> Log In </a></button>
         </form>
-       <b> <p class="text-center">Don't have an account? <a href="/register">Create account</a> </p></b>
-        <script src = "" async defer> </script>
+       <b> <p class = "text-center"> Don't have an account? <a href="/register"> Create account </a> </p></b>
+        
+       <script src = "" async defer> </script>
     </body>
 </html>

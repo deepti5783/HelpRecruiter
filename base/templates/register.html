@@ -16,20 +16,20 @@
                 
         <!--Register--> 
         <div class = "container py-5">
-            <h1 style="color:blue">Register</h1>
+            <h1 style = "color:blue"> Register </h1>
             
             <form method = "POST" action = "{% url 'register' %}">
                 {% load crispy_forms_tags %} 
                     {% csrf_token %}
                
-                    {{ form|crispy }} 
+                    <b>{{ form|crispy }}</b> 
                                        
                 <br>
-                <button class  ="btn btn-primary" type = "submit" style="color:blue">Register</button>
+                <button class = "btn btn-primary" type = "submit" style = "color:blue"> Register </button>
             
             </form>
             
-            <b><p class = "text-center">If you already have an account, <a href = "/login" > login </a> instead.</p></b>
+            <b><p class = "text-center"> If you already have an account, <a href = "/login" > login </a> instead.</p></b>
         
         </div>
         

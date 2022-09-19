@@ -14,16 +14,21 @@
     </head>
     <body>
       
-        <h2>Application Form</h2><br>
+        <h2 style = "color:blue" > Application Form </h2><br>
         {%block content%}
+        
         <form  action = "" method="POST">
             {% csrf_token %}
                 <p>
-                    {{form.as_p}}
+                   <b> {{form.as_p}}</b>
                 </p>
-                <input type="submit" value="Apply">
+                
+                <input type="submit" value="Apply" style="color:blue">
         </form>
+        
         {%endblock%}
+        
         <script src="" async defer></script>
+    
     </body>
 </html>

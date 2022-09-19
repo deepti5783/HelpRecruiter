@@ -25,9 +25,8 @@ urlpatterns = [
     path('register/', views.register, name ="register"),
     path('login/', views.login_view, name = "login"),
     path('logout/', views.logout, name = "logout" ),
-    path("detail/<str:pk>/",views.detail,name="detail"),
-    path("detail/app_form/<str:pk>/",views.app_form,name="apply"),
-    #path('home/', views.home, name = "home.html"),
-    #path('jobDescription/', views.job_Description, name = "jobDescription"),
+    path("detail/<str:pk>/",views.detail,name = "detail"),
+    path("detail/app_form/<str:pk>/",views.app_form,name = "apply"),
+    path('index',views.index, name = "index")
     
 ]
