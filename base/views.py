@@ -4,34 +4,38 @@ from django.shortcuts import render,redirect
 from base.forms import UserRegistrationForm,App_form
 from django.core.exceptions import ValidationError
 from django.contrib import messages
+from .models import JobDescription
+
 
 
 # Create your views here.
-def home_view(request):
-   return render(request, "home.html")
+def home(request):
+   jds = JobDescription.objects.all()
+   context = {'jds':jds}
+   return render(request, "home.html", context)
 
-   
 
 
 def index(request):
-   form = UserRegistrationForm()
-   context = {'form':form}
+   jds = JobDescription.objects.all()
+   context = {'jds':jds}
    return render(request, "index.html", context)
 
   
 
 def register(request):
-   # context = {}
+   context={}
    if request.method == 'POST':
       form = UserRegistrationForm(request.POST)
       
       if form.is_valid():
          form.save()
-         messages.success(request, "Your account has been created successfully.")     
-         return redirect('/login')
+         # messages.success(request, "Your account has been created successfully.")     
+         return redirect('/')
       
-      # context['registration_form'] = form
-      # message.error(request, "Unsuccessfully registration, Invalid Information.")
+      else:
+         context['registration_form'] = form
+         messages.error(request, "Unsuccessfully registration, Invalid Information.")
    
    elif request.method == 'GET':
       form = UserRegistrationForm()
@@ -54,12 +58,13 @@ def login_view(request):
 
             if user is not None:
                auth.login(request, user)
-               messages.info(request, f"You are now logged in as {username}.")
-               return redirect('/jobDescription')
+               #messages.info(request, "You are now logged in successfully")
+               return redirect('')
             
             else:
                messages.error(request,"Invalid email or password.")
-               return redirect('/login')
+               messages.error(request, form.errors)
+               return redirect('/')
          
          
       form = AuthenticationForm()     
@@ -72,14 +77,31 @@ def logout(request):
 
 
 def job_Description(request):
-   jobDescription = jobDescription.objects.all()
-   context = { "jds": jobDescription}
-   return render(request, "index.html", context)
+      jobDescriptions = JobDescription.objects.all()
+      context = { "jds": jobDescriptions}
+      return render(request, "index.html", context)
 
 
-def app_form(request):
-   context = {}
-   context['form'] = App_form()
-   return render(request, "app_form.html",context)
+def detail(request,pk):
+   jobDescriptions=JobDescription.objects.filter(id=pk)
+   context = {"jds":jobDescriptions}
+   return render(request, 'job_description.html', context)
+
+'''def detail(request,pk):
+   jobDescriptions=jobDescription.objects.filter(id=pk)
+   context = {'jd':jobDescriptions}
+   return render(request, 'details.html', context)'''
 
 
+def app_form(request,pk):
+   if request.method == 'POST':
+      form = App_form(data=request.POST, files=request.FILES)
+      if form.is_valid():
+            form.save()
+            return redirect('job_description.html',id=pk)
+   else:
+      form=App_form()
+      context={'form':form}
+      return render(request,"app_form.html",context)
+   #return render(request,"app_form.html")
+ 

@@ -7,11 +7,18 @@
 <body>
   <main>
     {% block content %}
-   
+  <div style="background-color:skyblue">
     <div class="header">
       <h1>Hashtrust Recruoitment Process 2022 </h1>
-    </div><br>    
-    <p> </p>
+    </div>
+  
+    <div style="text-align:right; margin-right:100px">
+      <a href="{% url 'login' %}"><button type="submit" style="background-color:blue" ><b>login</b></button></a>
+      <a href="{% url 'register' %}"><button type="submit" style="background-color:blue" ><b>register</b></button></a>
+      <p>.</p>
+    </div>  
+  </div> 
+    
     <div style="text-align : center; font-size : 150%">
     <pre style = "font-family : verdana"> Our organisation is looking for a Django Developer who is extremely knowledgeable 
       and a driven individual to assist the organisation in designing and programming web applications.
@@ -21,18 +28,19 @@
        so being a good communicator and collaborator is extremely important. </pre>
     </div>
 
+
     <div>
       <div>
-        <h3>Recruitment Process :</h3>
+        <h2 style="color:blue">Recruitment Process :</h2>
         
-        <div font = "font-family : verdana">HashTrust conducts 3 rounds to recruit new employees.</div>
+        <div font = "font-family : verdana" ><b>HashTrust conducts 3 rounds to recruit new employees.</b></div>
           <div font = "font-family : verdana">
           - Online Test<br>
           - Technical Round<br>
           - HR Round<br>
           </div>
       
-        <br><b>Online Test :</b>
+        <br><b style="color:blue">Online Test :</b>
         The Online test consist of questions from various domains and an essay writing. 
         This is a time based test and each section is allocated specific time. 
         Different sections of the test are :<br>
@@ -40,16 +48,16 @@
         - Logical Reasoning<br>
         - Verbal Ability<br>
         - Basic Programming and Computer Fundamentals<br>
-        <p> <b>Essay writing </b>is given specific time and you have to write an essay on paper on topic provided to you.
+        <p> <b style="color:blue">Essay writing </b>is given specific time and you have to write an essay on paper on topic provided to you.
            Topics may vary from current affairs to politics to abstract.</p>
-        <p><b>Technical Round :</b>
+        <p><b style="color:blue">Technical Round :</b>
           To ace this round you should be good with your concepts. If you are good with the basic concepts, it will easy for you to clear the round.
            There is no fixed rule or domain from which questions will be asked so you need to be versed with basics well.
             To maximize your chances you should be prepared with Data structures and Algorithms,
             DBMS, Operating System, Networking, OOPs concepts and a programming language of your choice. 
           Students from branches other than CS should prepare basic concepts of their branch.</p>
         <p>
-          <b>HR Round :</b>
+          <b style="color:blue">HR Round :</b>
 This is the final round of recruitment process.
  HR will check your communication skills, confidence and body language. 
  There will be basic HR questions like Tell me about yourself ?, 
@@ -61,52 +69,44 @@ This is the final round of recruitment process.
         </p>
       </div>
     </div>
+  
+  <h2 style="color:blue">Job Description:</h2>
+  
 
-  <h3 >Job Description:</h3>
+  {% for jd in jds %} 
+    <div>
+      <div class="col-md-6">
+        <span class="ml-3 mt-3">
+          <label> <b>Job title - </b>
+            {{jd.job_title}}
+          </label>
 
-  <div>
-    <div class="col-md-6">
-      <span class="ml-3 mt-3">
-        {% for jd in jds %}
-        
-            <label> <b>Job Brief - </b>
-              {{jd.job_brief}}
+          <div>
+            <label> <b>Organization - </b>
+              {{jd.Organization}}
             </label>
-
-            <div>
-              <label> <b>Responsibilities - </b>
-                {{jd.Responsibilities}}
-              </label>
-            </div>
-            <div>
-              <label>
-                <b>Requirements and Skills - </b>
-                {{jd.skills}}
-              </label>
-            </div>
-
-            <div>
-              <label> <b>Educational-qualifications - </b>
-                <ul>
-                  <li>{{jd.mandatory_qualification}}(Required)</li>
-                  <li>{{jd.optional_qualification}}</li>
-                </ul>
-              </label>
-            </div>
-
-            <a href="{% url 'apply' jd.id %}"><button type="submit"> Apply </button></a>
-            <br>
+          </div>
           
-        {%endfor%}
+          <div><b>Job location - </b>
+              {{jd.job_location}}
+            </label>
+          </div>
+          
+          <div>
+            <label> <b>Employment-type - </b>
+              {{jd.get_employment_type_display}}
+            </label>
+          </div><br>
 
-  </div>
-  {% endblock %}
-
-
-    <p style = "text-align : center">Don't have an account? <a href = "/register">Create account</a> </p>
-
-    <p style = "text-align : center">Already have an account.<a href = "/login">login</a> </p>
+          <a href="{% url 'detail' jd.id %}"><button type="submit" style="color:blue"> view detail </button></a>
+          <br><br>
+            
+          {%endfor%}
+        </span>
+      </div>
+    </div>
     
+{% endblock %}
   </main>
 </body>
 </html>

@@ -1,3 +1,4 @@
+from distutils.command import upload
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import CustomUserManager
@@ -28,7 +29,7 @@ class Organization(models.Model):
     def __str__(self):
         return self.name
 
-class jobDescription(models.Model):
+class JobDescription(models.Model):
     JOB_CAT_CHOICES = (
         ('HR', 'HR'),
         ('Frontend', 'Frontend'),
@@ -51,7 +52,7 @@ class jobDescription(models.Model):
     Organization = models.CharField(max_length = 40)
     mandatory_qualification = models.CharField(max_length = 40)
     optional_qualification = models.CharField(max_length = 40)
-    experience = models.IntegerField()
+    experience = models.CharField(max_length=20)
     what_is_expected = models.CharField(max_length = 50)
     what_we_offer = (models.CharField(max_length = 50))
 
@@ -61,7 +62,7 @@ class Meta:
         permissions = (
             ('read_item', 'can read item')
             )
-class jobApplicant(models.Model):
+class JobApplicant(models.Model):
     STATUS_CHOICES = (
         ('Pending', 'Pending'),
         ('in-progress', 'in-progress'),
@@ -70,10 +71,10 @@ class jobApplicant(models.Model):
         )
 
     user = models.ForeignKey(CustomUser,on_delete = models.CASCADE, related_name = '+')
-    JobDescription=models.ForeignKey(CustomUser,on_delete = models.CASCADE, related_name = '+')
-    resume = models.FileField()
+    jobDescription=models.ForeignKey(JobDescription,on_delete = models.CASCADE, related_name = '+')
+    resume = models.FileField(upload_to='Documents/')
     notice_period = models.IntegerField()
-    status = models.CharField(max_length = 20, choices = STATUS_CHOICES)
+    status = models.CharField(max_length = 20, choices = STATUS_CHOICES )
 
     def __str__(self):
         return self.user

@@ -19,7 +19,49 @@
         
         {% block content %}
         {% if user.is_authenticated %}
-          Hi {{ user.username }}!
+          <h3>Hi {{ user.username }}, <br> Welcome to our Job Description Page</h3>
+
+          <h3 >Job Description:</h3>
+   
+    <div>
+      <div class="col-md-6">
+        <span class="ml-3 mt-3">
+          {% for jd in jds %}
+          
+              <label> <b>Job Brief - </b>
+                {{jd.job_brief}}
+              </label>
+
+              <div>
+                <label> <b>Responsibilities - </b>
+                  {{jd.Responsibilities}}
+                </label>
+              </div>
+              <div>
+                <label>
+                  <b>Requirements and Skills - </b>
+                  {{jd.skills}}
+                </label>
+              </div>
+
+              <div>
+                <label> <b>Educational-qualifications - </b>
+                  <ul>
+                    <li>{{jd.mandatory_qualification}}(Required)</li>
+                    <li>{{jd.optional_qualification}}</li>
+                  </ul>
+                </label>
+              </div>
+
+              <a href="{% url 'detail' jd.id %}"><button type="submit"> view detail </button></a>
+              <br>
+            
+          {%endfor%}
+        </span>
+      </div>
+    </div>
+ 
+
         {% else %}
           <p>You are not logged in</p>
           <a href="{% url 'login' %}">Log In</a>

@@ -1,4 +1,4 @@
-from base.models import CustomUser,Organization,jobDescription,jobApplicant
+from base.models import CustomUser,Organization,JobDescription,JobApplicant
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import UserRegistrationForm
@@ -25,5 +25,5 @@ class CustomUserAdmin(UserAdmin):
     
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Organization)
-admin.site.register(jobDescription)
-admin.site.register(jobApplicant)
+admin.site.register(JobDescription)
+admin.site.register(JobApplicant)

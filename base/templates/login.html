@@ -12,13 +12,13 @@
     
     <body>
         
-        <h2>Log In</h2>
+        <h2 style="color:blue">Log In</h2>
         <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit">Log In</a></button>
+        <button type="submit" style="color:blue">Log In</a></button>
         </form>
-        <p class="text-center">Don't have an account? <a href="/register">Create account</a> </p>
+       <b> <p class="text-center">Don't have an account? <a href="/register">Create account</a> </p></b>
         <script src = "" async defer> </script>
     </body>
 </html>

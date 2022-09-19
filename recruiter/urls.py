@@ -21,13 +21,13 @@ from base import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index, name = "index"),
+    path('', views.job_Description, name = "jobDescription"),
     path('register/', views.register, name ="register"),
     path('login/', views.login_view, name = "login"),
-    path('jobDescription/', views.job_Description, name = "jobDescription"),
     path('logout/', views.logout, name = "logout" ),
-    path('registration form/', views.app_form, name = "app_form"),
+    path("detail/<str:pk>/",views.detail,name="detail"),
+    path("detail/app_form/<str:pk>/",views.app_form,name="apply"),
+    #path('home/', views.home, name = "home.html"),
+    #path('jobDescription/', views.job_Description, name = "jobDescription"),
     
-    
-
 ]

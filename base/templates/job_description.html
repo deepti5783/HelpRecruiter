@@ -10,40 +10,63 @@
         <link rel="stylesheet" href="">
     </head>
     <body >
-        {%block title%}
-        <h1>Job Description</h1>
-        {%endblock%}
+        {% block title %}
+        <h1 style="color:blue">Job Description</h1>
+        {% endblock %}
     
-        {%block content%}
+        {% block content %}
         {% for jd in jds %}
-    
-            <div>
-                <label> <b>Job Brief: </b></label><br>
-                {{jd.job_brief}}
-            </div>
-            <br>
-            <div>
-                <label> <b>Responsibilities: </b></label>
-                {{jd.responsibilities | linebreaks}}
-            </div>
-            
-            <div>
-                <label> <b>Requirements and Skills: </b></label>
-                {{jd.skills | linebreaks}}
-            </div>
-            
-            <div>
-                <label > <b> Educational-qualifications: </b></label>
-                <ul>
-                    <li>{{jd.mandatory_qualification}} (Required)</li>
-                    <li>{{jd.optional_qualification}}</li>
-                </ul>
-            </div>
-            
+        <div class="col-md-6">
+            <span class="ml-3 mt-3">
+                <div>
+                    <label> <b>Job title: </b></label>
+                    {{jd.job_title }}
+                </div>
+                
+                <div>
+                    <label> <b>Job location: </b></label>
+                    {{jd.job_location }}
+                </div>
+               
+                <div>
+                    <label> <b>Employment type: </b></label>
+                    {{jd.employment_type }}
+                </div>
+                
+                <div>
+                    <label> <b>Organization: </b></label>
+                    {{jd.Organization }}
+                </div>
+                
+                <div>
+                    <label > <b> Educational-qualifications: </b></label>
+                   
+                        <li>{{jd.mandatory_qualification}} (Required)</li>
+                        <li>{{jd.optional_qualification}}</li>
+                   
+                </div>
 
-        <a href="{% url 'apply' jd.id %}"><button type="submit" ><h4>Apply for job</h4></button></a>
-        {%endfor%}
-    {%endblock%}
+                <div>
+                    <label> <b>Experience: </b></label>
+                    {{jd.experience}}
+                </div>
+                
+                <div>
+                    <label> <b>What is expected: </b></label>
+                    {{jd.what_is_expected }}
+                </div>
+                
+                <div>
+                    <label> <b>What we offer: </b></label>
+                    {{jd.what_we_offer}}
+                </div><br>
+                
+
+            </span>
+        </div>    
+        <a href="{% url 'apply' jd.id %}"><button type="submit" style="background-color:blue"><h3>Apply</h3></button></a>
+        {% endfor%}
+        {% endblock %}
     
     </body>
         <script src="" async defer></script>
