@@ -17,28 +17,8 @@
         {% block content %}
         <div class="col-md-6">
             <span class="ml-3 mt-3">
-                <div>
-                    <label> <b>Job Brief: </b></label><br>
-                    {{jd.job_brief | linebreaks}}
-                </div>
-                
-                <div>
-                    <label> <b>Responsibilities: </b></label>
-                    {{jd.responsibilities | linebreaks}}
-                </div>
                
-                <div>
-                    <label> <b>Requirements and Skills: </b></label>
-                    {{jd.skills | linebreaks}}
-                </div>
                 
-                <div>
-                    <label > <b> Educational-qualifications: </b></label>
-                    <ul>
-                        <li>{{jd.mandatory_qualification}} (Required)</li>
-                        <li>{{jd.optional_qualification}}</li>
-                    </ul>
-                </div>
             </span>
         </div>    
         <a href="{% url 'apply' jd.pk %}"><button type="submit" ><h2>Apply</h2></button></a>

@@ -17,10 +17,11 @@
         <h2 style = "color:blue" > Application Form </h2><br>
         {%block content%}
         
-        <form  action = "" method="POST">
+        <form  method="POST" enctype="multipart/form-data">
             {% csrf_token %}
                 <p>
-                   <b> {{form.as_p}}</b>
+                    <b>{{form.job_description}}</b>
+                    <b> {{form.as_p}}</b>
                 </p>
                 
                 <input type="submit" value="Apply" style="color:blue">

@@ -3,18 +3,12 @@ from django.contrib.auth.models import auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from django.contrib.auth import login
-from base.forms import UserRegistrationForm,App_form
+from base.forms import UserRegistrationForm,ApplicationForm
 from django.core.exceptions import ValidationError
 from django.contrib import messages
-from .models import JobDescription
+from .models import JobApplicant, JobDescription
 
 # Create your views here.
-def home(request):
-   jds = JobDescription.objects.all()
-   context = {'jds':jds}
-   return render(request, "home.html", context)
-
-
 
 def index(request):
    jds = JobDescription.objects.all()
@@ -72,10 +66,19 @@ def logout(request):
    return render(request, "logout.html")
 
 
+
 def job_Description(request):
       jobDescriptions = JobDescription.objects.all()
       context = { "jds": jobDescriptions}
       return render(request, "index.html", context)
+
+
+
+def applied_job(request):
+   appliedJob = JobApplicant.objects.all()
+   context={"jobs":appliedJob}
+   return render(request,'applied_job.html',context)
+
 
 
 def detail(request,pk):
@@ -84,16 +87,18 @@ def detail(request,pk):
    return render(request, 'job_description.html', context)
 
 
-def app_form(request,pk):
-   if request.method == 'POST':
-      form = App_form(data = request.POST, files = request.FILES)
-      if form.is_valid():
-            user = form.save()
-            login(request,user)
-            return redirect('job_description.html', id = pk)
 
-   form = App_form()
+def app_form(request,pk):
+   #import pdb 
+   #pdb.set_trace()
+   if request.method == 'POST':
+      form = ApplicationForm(request.POST, request.FILES)
+      if form.is_valid():
+         form.save()
+         return redirect('applied.html',id=pk)
+
+   else:
+      form = ApplicationForm()
    context = {'form':form}
-   return render(request,"app_form.html",context)
- 
- 
+   return render(request,"app_form.html", context)
+

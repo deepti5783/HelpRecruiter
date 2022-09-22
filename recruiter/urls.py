@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from base import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 
@@ -27,6 +29,10 @@ urlpatterns = [
     path('logout/', views.logout, name = "logout" ),
     path("detail/<str:pk>/",views.detail,name = "detail"),
     path("detail/app_form/<str:pk>/",views.app_form,name = "apply"),
-    path('index',views.index, name = "index")
+    path('index/',views.index, name = "index"),
+    path("applied-jobs/",views.applied_job,name='applied'),
     
 ]
+
+if settings.DEBUG: 
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

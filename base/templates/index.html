@@ -9,14 +9,10 @@
   <main>
     {% block content %}
   
-
      <div class = "header" style = "color:blue">
        <h1> Hashtrust Recruoitment Process 2022 </h1>
      </div>
-  
-     
-
-    
+ 
     <div style = "text-align : center; font-size : 150%">
     <pre style = "font-family : verdana"> <b> Our organisation is looking for a Django Developer who is extremely knowledgeable 
       and a driven individual to assist the organisation in designing and programming web applications.
@@ -25,29 +21,24 @@
        You will need to liaise with front end developers extremely regularly, 
        so being a good communicator and collaborator is extremely important.</b> </pre>
     </div>
-
-
-    
-    {#{% if user.is_authenticated %}#}
-          {#<h3 style = "color:red; text-align:center">Hi {{ user.username }}, <br> Welcome, You are now logged in! </h3>#}
-          {#<a href = "{% url 'logout' %}"><button type = "submit" style = "background-color:blue" ><b> logout </b></button></a>#}
-            <div style="text-align:center">
-              {% if user.is_authenticated %}
-                
-                <h3 style = "color:purple">Hi {{ user.username }}, <br> Welcome, You are now logged in! </h3>
-                <a class="nav-item nav-link" href="{% url 'logout' %}">
-                  <button type = "submit" style = "background-color:blue"><b >Log out</b> <i class="fas fa-sign-out-alt"></i></button>
-                </a>
-                
-              {% else %}
-                <a class="nav-item nav-link" href = "{% url 'login' %}">
-                  <button type = "submit" style = "background-color:blue"><b>Log in <i class="fas fa-sign-in-alt"></i></button>
-                </a>
-                <a class="nav-item nav-link" href="{% url 'register' %}">
-                  <button type = "submit" style = "background-color:blue"><b>Register </b><i class="fas fa-user-plus"></i></button>
-                </a>
-              {% endif %}
-              </div>  
+    <div style="text-align:center">
+      {% if user.is_authenticated %}
+        
+        <h3 style = "color:purple">Hi {{ user.email }}, <br> Welcome, You are now logged in! </h3>
+        <a class="nav-item nav-link" href="{% url 'logout' %}">
+          <button type = "submit" style = "background-color:blue"><b style="color:white">Log out</b> <i class="fas fa-sign-out-alt"></i></button>
+        </a>
+        <a href="{% url 'applied' %}"><button type="submit" style="background-color:blue "><b style="color:white">Applied Job</b></button>
+        </a>     
+      {% else %}
+        <a class="nav-item nav-link" href = "{% url 'login' %}">
+          <button type = "submit" style = "background-color:blue"><b style="color:white">Log in <i class="fas fa-sign-in-alt"></i></button>
+        </a>
+        <a class="nav-item nav-link" href="{% url 'register' %}">
+          <button type = "submit" style = "background-color:blue"><b style="color:white">Register </b><i class="fas fa-user-plus"></i></button>
+        </a>
+      {% endif %}
+    </div>  
     <div>
       <div>
         <h2 style = "color:blue"> Recruitment Process : </h2>
@@ -59,34 +50,33 @@
           - HR Round<br>
           </div>
       
-        <br><b style = "color:blue"> Online Test : </b>
-        The Online test consist of questions from various domains and an essay writing. 
-        This is a time based test and each section is allocated specific time. 
-        Different sections of the test are :<br>
-        - Quantitative Aptitude<br>
-        - Logical Reasoning<br>
-        - Verbal Ability<br>
-        - Basic Programming and Computer Fundamentals<br>
+          <br><b style = "color:blue"> Online Test : </b>
+          The Online test consist of questions from various domains and an essay writing. 
+          This is a time based test and each section is allocated specific time. 
+          Different sections of the test are :<br>
+          - Quantitative Aptitude<br>
+          - Logical Reasoning<br>
+          - Verbal Ability<br>
+          - Basic Programming and Computer Fundamentals<br>
 
-        <p><b style = "color:blue"> Technical Round :</b>
-          To ace this round you should be good with your concepts. If you are good with the basic concepts, it will easy for you to clear the round.
-           There is no fixed rule or domain from which questions will be asked so you need to be versed with basics well.
-            To maximize your chances you should be prepared with Data structures and Algorithms,
-            DBMS, Operating System, Networking, OOPs concepts and a programming language of your choice. 
-          Students from branches other than CS should prepare basic concepts of their branch.</p>
-        <p>
+          <p><b style = "color:blue"> Technical Round :</b>
+            To ace this round you should be good with your concepts. If you are good with the basic concepts, it will easy for you to clear the round.
+              There is no fixed rule or domain from which questions will be asked so you need to be versed with basics well.
+              To maximize your chances you should be prepared with Data structures and Algorithms,
+              DBMS, Operating System, Networking, OOPs concepts and a programming language of your choice. 
+            Students from branches other than CS should prepare basic concepts of their branch.
+          </p>
+          <p>
           <b style = "color:blue"> HR Round : </b>
-          This is the final round of recruitment process.
-          HR will check your communication skills, confidence and body language. 
-          There will be basic HR questions like Tell me about yourself ?, 
-          Why do you want to join HashTrust? etc. You might be asked some puzzles and technicals questions depending on your feedback and HR. 
-          You can prepare for puzzles from our Puzzles Section. 
-          The key for this round is being confident about yourself.
-
-
-        </p>
+            This is the final round of recruitment process.
+            HR will check your communication skills, confidence and body language. 
+            There will be basic HR questions like Tell me about yourself ?, 
+            Why do you want to join HashTrust? etc. You might be asked some puzzles and technicals questions depending on your feedback and HR. 
+            You can prepare for puzzles from our Puzzles Section. 
+            The key for this round is being confident about yourself.
+          </p>
+        </div>
       </div>
-    </div>
 
   
    <h2 style = "color:blue"> Job Description: </h2>
