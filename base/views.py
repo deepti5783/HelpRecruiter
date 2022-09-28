@@ -3,7 +3,7 @@ from django.contrib.auth.models import auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from django.contrib.auth import login
-from base.forms import UserRegistrationForm,ApplicationForm
+from .forms import UserRegistrationForm,ApplicationForm
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from .models import JobApplicant, JobDescription
@@ -87,18 +87,19 @@ def detail(request,pk):
    return render(request, 'job_description.html', context)
 
 
-
 def app_form(request,pk):
-   #import pdb 
-   #pdb.set_trace()
+   
    if request.method == 'POST':
-      form = ApplicationForm(request.POST, request.FILES)
+      form = ApplicationForm(data = request.POST, files = request.FILES)
       if form.is_valid():
          form.save()
-         return redirect('applied.html',id=pk)
+         return redirect('success')
 
    else:
-      form = ApplicationForm()
+      form = ApplicationForm(user=request.user, job_description = pk)
    context = {'form':form}
    return render(request,"app_form.html", context)
 
+
+def success(request):
+   return render(request, 'success.html')

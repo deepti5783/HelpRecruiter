@@ -27,10 +27,11 @@ urlpatterns = [
     path('register/', views.register, name ="register"),
     path('login/', views.login_view, name = "login"),
     path('logout/', views.logout, name = "logout" ),
-    path("detail/<str:pk>/",views.detail,name = "detail"),
-    path("detail/app_form/<str:pk>/",views.app_form,name = "apply"),
-    path('index/',views.index, name = "index"),
-    path("applied-jobs/",views.applied_job,name='applied'),
+    path("detail/<str:pk>/", views.detail,name = "detail"),
+    path("detail/app_form/<str:pk>", views.app_form,name = "apply"),
+    path('index/', views.index, name = "index"),
+    path("applied-jobs/", views.applied_job, name = 'applied'),
+    path("success/", views.success, name = 'success'),
     
 ]
 

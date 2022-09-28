@@ -7,28 +7,17 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Registration Form</title>
+        <title>success</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
     </head>
     <body>
-      
-        <h2 style = "color:blue" > Application Form </h2><br>
-        {%block content%}
         
-        <form  method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-                <p>
-                  <b> {{form.as_p}}</b>
-                </p>
-                
-                <input type="submit" value="Apply" style="color:blue">
-        </form>
-        
-        {%endblock%}
+        <h3><p style = 'text-align : center'> your application form is saved successfully. </p></h3>
+
+        <a href = "{% url 'index'%}"> <h4 style ='text-align:center'> back to the home page. </h4></a>
         
         <script src="" async defer></script>
-    
     </body>
 </html>
